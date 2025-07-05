@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Spotify-themed colors */
+  --spotify-green: hsl(141, 73%, 42%);
+  --spotify-dark: hsl(0, 0%, 9%);
+  --spotify-gray: hsl(0, 0%, 7%);
+  --accent-orange: hsl(14, 100%, 60%);
+  --accent-purple: hsl(248, 53%, 58%);
+  --card-bg: hsl(0, 0%, 12%);
+  --text-muted: hsl(0, 0%, 70%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: var(--spotify-gray);
+    color: white;
+  }
+}
+
+@layer components {
+  .swipe-card {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  }
+  
+  .swipe-card.swiping {
+    transition: none;
+  }
+  
+  .swipe-card.swipe-left {
+    transform: translateX(-300px) rotate(-30deg);
+    opacity: 0;
+  }
+  
+  .swipe-card.swipe-right {
+    transform: translateX(300px) rotate(30deg);
+    opacity: 0;
+  }
+  
+  .swipe-indicator {
+    transition: opacity 0.2s ease-out;
+  }
+  
+  .card-stack {
+    position: relative;
+  }
+  
+  .card-stack .card-background {
+    position: absolute;
+    inset: 0;
+    background-color: var(--card-bg);
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+  }
+  
+  .card-stack .card-background:nth-child(1) {
+    transform: rotate(1deg) scale(0.95) translateY(8px);
+    opacity: 0.4;
+    z-index: 1;
+  }
+  
+  .card-stack .card-background:nth-child(2) {
+    transform: rotate(-0.5deg) scale(0.97) translateY(4px);
+    opacity: 0.6;
+    z-index: 2;
+  }
+  
+  .main-card {
+    z-index: 10;
+    position: relative;
+  }
+  
+  .audio-progress {
+    background: linear-gradient(to right, var(--spotify-green) 0%, var(--spotify-green) var(--progress, 0%), rgba(255, 255, 255, 0.2) var(--progress, 0%), rgba(255, 255, 255, 0.2) 100%);
+  }
+}
+
+@layer utilities {
+  .text-spotify-green {
+    color: var(--spotify-green);
+  }
+  
+  .bg-spotify-green {
+    background-color: var(--spotify-green);
+  }
+  
+  .bg-spotify-dark {
+    background-color: var(--spotify-dark);
+  }
+  
+  .bg-spotify-gray {
+    background-color: var(--spotify-gray);
+  }
+  
+  .bg-card-bg {
+    background-color: var(--card-bg);
+  }
+  
+  .text-muted {
+    color: var(--text-muted);
+  }
+  
+  .bg-accent-orange {
+    background-color: var(--accent-orange);
+  }
+  
+  .bg-accent-purple {
+    background-color: var(--accent-purple);
+  }
+}
